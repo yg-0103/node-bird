@@ -1,19 +1,12 @@
 import { Button, Form, Input } from 'antd';
 import Link from 'next/link';
-import {
-  ChangeEvent,
-  Dispatch,
-  SetStateAction,
-  useCallback,
-  useState,
-} from 'react';
+import { ChangeEvent, useCallback, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { loginAction } from '../../modules/user';
 
-interface LoginFormProps {
-  setIsLogin: Dispatch<SetStateAction<boolean>>;
-}
-
-const LoginForm = ({ setIsLogin }: LoginFormProps) => {
+const LoginForm = () => {
+  const dispatch = useDispatch();
   const [input, setInput] = useState({
     id: '',
     password: '',
@@ -30,8 +23,7 @@ const LoginForm = ({ setIsLogin }: LoginFormProps) => {
   }, []);
 
   const handleSubmit = useCallback(() => {
-    console.log(id, password);
-    setIsLogin(true);
+    dispatch(loginAction({ id, password }));
   }, [id, password]);
 
   return (

@@ -1,13 +1,12 @@
 import { Avatar, Button, Card } from 'antd';
-import { Dispatch, SetStateAction, useCallback } from 'react';
+import { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+import { logoutAction } from '../../modules/user';
 
-interface UserProfileProps {
-  setIsLogin: Dispatch<SetStateAction<boolean>>;
-}
-
-const UserProfile = ({ setIsLogin }: UserProfileProps) => {
+const UserProfile = () => {
+  const dispatch = useDispatch()
   const handleLogOut = useCallback(() => {
-    setIsLogin(false);
+    dispatch(logoutAction())
   }, []);
 
   return (

@@ -1,17 +1,17 @@
 import Link from 'next/link';
 import { Menu, Input, Row, Col } from 'antd';
-import { useState } from 'react';
 import UserProfile from '../UserProfile/UserProfile';
 import LoginForm from '../LoginForm/LoginForm';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../modules';
 
 interface AppLayoutProps {
   children: React.ReactNode;
 }
 
 const AppLayout = ({ children }: AppLayoutProps) => {
-  const [isLogin, setIsLogin] = useState(false);
-
+  const isLogin = useSelector((state: RootState) => state.user.isLogin);
   return (
     <div>
       <Menu mode="horizontal">
@@ -36,11 +36,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
       </Menu>
       <Row gutter={8}>
         <Col xs={24} md={6}>
-          {isLogin ? (
-            <UserProfile setIsLogin={setIsLogin} />
-          ) : (
-            <LoginForm setIsLogin={setIsLogin} />
-          )}
+          {isLogin ? <UserProfile /> : <LoginForm />}
         </Col>
         <Col xs={24} md={12}>
           {children}
