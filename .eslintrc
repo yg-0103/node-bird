@@ -20,6 +20,7 @@
   "plugins": ["@typescript-eslint", "import", "react-hooks"],
   "rules": {
     "@typescript-eslint/explicit-module-boundary-types": 0,
-    "react/react-in-jsx-scope": 0
+    "react/react-in-jsx-scope": 0,
+    "@typescript-eslint/no-explicit-any": 0
   }
 }
