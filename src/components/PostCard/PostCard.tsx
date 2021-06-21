@@ -13,6 +13,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../modules';
 import { MainPost } from '../../types/post';
 import CommentForm from '../CommentForm/CommentForm';
+import PostCardContent from '../PostCardContent/PostCardContent';
 import PostImages from '../PostImages/PostImages';
 
 interface PostCardProps {
@@ -71,7 +72,7 @@ const PostCard = ({ post }: PostCardProps) => {
         <Card.Meta
           avatar={<Avatar>{post.user.nickname[0]}</Avatar>}
           title={post.user.nickname}
-          description={post.content}
+          description={<PostCardContent postData={post.content} />}
         />
       </Card>
       {commentFormOpen && (

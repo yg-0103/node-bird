@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Menu, Input, Row, Col } from 'antd';
 import UserProfile from '../UserProfile/UserProfile';
 import LoginForm from '../LoginForm/LoginForm';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../modules';
 
@@ -14,6 +14,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
   const isLogin = useSelector((state: RootState) => state.user.isLogin);
   return (
     <div>
+      <Global />
       <Menu mode="horizontal">
         <Menu.Item>
           <Link href="/">
@@ -57,6 +58,21 @@ const AppLayout = ({ children }: AppLayoutProps) => {
 
 const SerachInput = styled(Input.Search)`
   vertical-align: middle;
+`;
+
+const Global = createGlobalStyle`
+  .ant-row {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+
+  .ant-col:first-child {
+    padding-left: 0 !important;
+  }
+
+  .ant-col:last-child {
+    padding-right: 0 !important;
+  }
 `;
 
 export default AppLayout;

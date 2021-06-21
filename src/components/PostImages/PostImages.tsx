@@ -14,7 +14,9 @@ const PostImages = ({ images }: PostImagesProps) => {
     setShowImagesZoom(true);
   }, []);
 
-  const handleClose = useCallback(() => {}, []);
+  const handleClose = useCallback(() => {
+    setShowImagesZoom(false);
+  }, []);
   if (images.length === 1) {
     return (
       <>
@@ -66,6 +68,7 @@ const PostImages = ({ images }: PostImagesProps) => {
           width: '50%',
           textAlign: 'center',
           verticalAlign: 'middle',
+          cursor: 'pointer'
         }}
         onClick={handleZoom}
       >
@@ -73,6 +76,7 @@ const PostImages = ({ images }: PostImagesProps) => {
         <br />
         {images.length - 1}개의 사진더보기
       </div>
+      {showImagesZoom && <ImagesZoom images={images} onClose={handleClose} />}
     </div>
   );
 };

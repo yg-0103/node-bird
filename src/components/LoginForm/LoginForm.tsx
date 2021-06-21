@@ -1,11 +1,13 @@
 import { Button, Form, Input } from 'antd';
 import Link from 'next/link';
 import { ChangeEvent, useCallback, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { RootState } from '../../modules';
 import { loginAction } from '../../modules/user';
 
 const LoginForm = () => {
+  const { loading } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
   const [input, setInput] = useState({
     id: '',
@@ -45,7 +47,7 @@ const LoginForm = () => {
         />
       </div>
       <ButtonWrapper>
-        <Button type="primary" htmlType="submit" loading={false}>
+        <Button type="primary" htmlType="submit" loading={loading}>
           로그인
         </Button>
         <Link href="/signup">

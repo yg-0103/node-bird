@@ -1,11 +1,19 @@
 import { AnyAction } from 'redux';
 import { PostData } from '../types/post';
 
-const ADD_POST = 'ADD_POST' as const;
+export const ADD_POST = 'ADD_POST' as const;
+const ADD_POST_SUCCESS = 'ADD_POST_SUCCESS' as const;
+const ADD_POST_ERROR = 'ADD_POST_ERROR' as const;
 
-export const addPost = {
+export const addPost = (data: any) => ({
   type: ADD_POST,
-};
+  payload: data,
+});
+export const addPostSuccess = () => ({ type: ADD_POST_SUCCESS });
+export const addPostError = (e: Error) => ({
+  type: ADD_POST_ERROR,
+  payload: e,
+});
 
 const initialState: PostData = {
   mainPosts: [
@@ -61,10 +69,7 @@ const dummyPost = {
   comments: [],
 };
 
-const reducer = (
-  state = initialState,
-  action: AnyAction
-): PostData => {
+const reducer = (state = initialState, action: AnyAction): PostData => {
   switch (action.type) {
     case ADD_POST:
       return {
