@@ -17,6 +17,7 @@ const PostForm = () => {
   const handleChange = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
   }, []);
+  
   const handleClickImageUpload = useCallback(() => {
     if (!inputRef.current) return;
     inputRef.current.click();

@@ -26,7 +26,7 @@ const CommentForm = ({ post }: CommentFormProps) => {
       <Form.Item style={{ position: 'relative', margin: 0 }}>
         <Input.TextArea value={commentText} onChange={handleChange} rows={4} />
         <Button
-          style={{ position: 'absolute', right: 0, bottom: -40 }}
+          style={{ position: 'absolute', right: 0, bottom: -40, zIndex: 10 }}
           type="primary"
           htmlType="submit"
         >

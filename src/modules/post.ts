@@ -1,5 +1,6 @@
 import { AnyAction } from 'redux';
 import { PostData } from '../types/post';
+import shortId from 'shortid'
 
 export const ADD_POST = 'ADD_POST' as const;
 const ADD_POST_SUCCESS = 'ADD_POST_SUCCESS' as const;
@@ -9,18 +10,20 @@ export const addPost = (data: any) => ({
   type: ADD_POST,
   payload: data,
 });
-export const addPostSuccess = () => ({ type: ADD_POST_SUCCESS });
+export const addPostSuccess = (data: any) => ({ type: ADD_POST_SUCCESS, payload: data });
 export const addPostError = (e: Error) => ({
   type: ADD_POST_ERROR,
   payload: e,
 });
 
 const initialState: PostData = {
+  loading: false,
+  error: null,
   mainPosts: [
     {
-      id: 1,
+      id: shortId.generate(),
       user: {
-        id: 1,
+        id: shortId.generate(),
         nickname: 'yg',
       },
       content: '첫 번째 게시글 #해시태그 #익스프레스',
@@ -59,10 +62,10 @@ const initialState: PostData = {
 };
 
 const dummyPost = {
-  id: 2,
+  id: shortId.generate(),
   content: '더미데이터',
   user: {
-    id: 1,
+    id: shortId.generate(),
     nickname: '연구',
   },
   images: [],

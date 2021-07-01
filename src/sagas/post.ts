@@ -1,17 +1,9 @@
-import axios from 'axios';
-import { call, put, takeEvery } from 'redux-saga/effects';
-import { addPostError, addPostSuccess, ADD_POST } from '../modules/post';
+import { put, takeEvery } from 'redux-saga/effects';
+import { addPost, addPostError, addPostSuccess, ADD_POST } from '../modules/post';
 
-const postApi = async () => {
-  const { data } = await axios.post('/api', { name: '22' });
-  return data;
-};
-
-function* addPostSaga() {
+function* addPostSaga(action: ReturnType<typeof addPost>) {
   try {
-    const { data } = yield call(postApi);
-
-    yield put(addPostSuccess());
+    yield put(addPostSuccess(action.payload));
   } catch (e) {
     yield put(addPostError(e));
   }

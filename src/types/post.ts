@@ -1,12 +1,14 @@
 
 export interface PostData {
+  loading: boolean;
+  error: null | Error;
   mainPosts: MainPost[];
   imagePath: any[];
   postAdded: boolean;
 }
 
 export interface MainPost {
-  id:       number;
+  id:       string;
   user:     MainPostUser;
   content:  string;
   images:   Image[];
@@ -27,6 +29,6 @@ export interface Image {
 }
 
 export interface MainPostUser {
-  id:       number;
+  id:       string;
   nickname: string;
 }
