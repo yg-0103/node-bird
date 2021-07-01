@@ -12,6 +12,7 @@ const createStore = () => {
     middleware:  [sagaMiddleware]
   })
   
+
   sagaMiddleware.run(rootSaga)
   return store;
 };
